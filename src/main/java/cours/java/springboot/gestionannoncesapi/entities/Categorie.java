@@ -20,6 +20,6 @@ public class Categorie {
     private Long id;
     private String libelle;
     private String descrition;
-    @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categorie")
     private List<Produit> produits;
 }

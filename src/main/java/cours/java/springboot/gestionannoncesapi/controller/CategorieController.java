@@ -8,24 +8,32 @@ import java.util.List;
 
 @RestController
 public class CategorieController {
-    CategorieService categorieService;
+    private CategorieService categorieService;
     public CategorieController(CategorieService categorieService){
         this.categorieService=categorieService;
     }
+    /*La methode de recuperation de tous les categories*/
     @GetMapping("/categories")
     public List<Categorie> categories(){
         return categorieService.getAllCategorie();
     }
+    /*La methode de recuperation d'une categorie*/
+    @GetMapping("/categorie/{id}")
+    public Categorie getOne(@PathVariable Long id){
+        return categorieService.getOneCategorie(id);
+    }
+    /*La methode d'ajout d'un categorie*/
     @PostMapping("/categorie/save")
     public Categorie save(@RequestBody Categorie categorie){
         categorieService.saveCategorie(categorie);
         return categorie;
     }
+    /*La methode de modification d'un categorie*/
     @PutMapping("/categorie/edit/{id}")
     public Categorie update(@PathVariable Long id,@RequestBody Categorie categorie){
         return categorieService.editCategorie(id,categorie);
     }
-
+    /*La methode de suppression d'un categorie*/
     @DeleteMapping("/categorie/delete/{id}")
     public void delete(@PathVariable Long id){
         categorieService.deleteCategorie(id);
