@@ -28,4 +28,12 @@ public class ProduitController {
         produitService.saveProduit(produit);
         return produit;
     }
+    @DeleteMapping("/produit/delete/{id}")
+    public void delete(@PathVariable Long id){
+        produitService.deleteProduit(id);
+    }
+    @PutMapping("/produit/edit/{id}")
+    public Produit edit(@PathVariable Long id,@RequestBody Produit produit){
+       return produitService.editProduit(id,produit);
+    }
 }

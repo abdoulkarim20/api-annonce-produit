@@ -22,6 +22,7 @@ public class CategorieService {
         return categorieRepository.save(categorie);
     }
     public Categorie editCategorie(Long id,Categorie categorie){
+
         Categorie categorieEdit=getOneCategorie(id);
         categorieEdit.setLibelle(categorie.getLibelle());
         categorieEdit.setDescrition(categorie.getDescrition());
