@@ -18,13 +18,18 @@ public class CategorieService {
         return categorieRepository.findAll();
     }
     public Categorie getOneCategorie(Long id){
+        getCategorieById(id);
+        return categorieRepository.findById(id).get();
+    }
+    //Une fonction qui verifie si uen categorie de par son id existe
+    public void getCategorieById(Long id){
         Optional<Categorie> categorieExist=categorieRepository.findById(id);
         if (!categorieExist.isPresent()){
             throw new categorieException(String.format("Cette categrie n'existe pas dans la base de donnees "+id));
         }
-        return categorieRepository.findById(id).get();
     }
-    //Une fonction qui verifie si une categorie existe
+
+    //Une fonction qui verifie si une categorie de meme non existe
     public void getCategorieByLibelle(String libelle){
         Optional<Categorie> categorieExist=categorieRepository.getCategorieByLibelleContains(libelle);
         if (categorieExist.isPresent()){
@@ -37,7 +42,6 @@ public class CategorieService {
     }
 
     public Categorie editCategorie(Long id,Categorie categorie){
-
         Categorie categorieEdit=getOneCategorie(id);
         categorieEdit.setLibelle(categorie.getLibelle());
         categorieEdit.setDescrition(categorie.getDescrition());
