@@ -21,6 +21,5 @@ public class Produit {
     private Double prix;
     private String description;
     @ManyToOne
-    @JsonIgnore
     private Categorie categorie;
 }

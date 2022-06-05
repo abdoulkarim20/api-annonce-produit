@@ -21,7 +21,7 @@ public class Categorie {
     private Long id;
     private String libelle;
     private String descrition;
-    @OneToMany(mappedBy = "categorie")
+    @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Produit> produits;
 }

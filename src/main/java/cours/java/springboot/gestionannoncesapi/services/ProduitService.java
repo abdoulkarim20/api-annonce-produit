@@ -34,7 +34,7 @@ public class ProduitService {
         Produit p=getOne(id);
         p.setProduitName(produit.getProduitName());
         p.setPhoto(produit.getPhoto());
-        p.setCategorie(categorieRepository.findById(id).get());
+        p.setCategorie(produit.getCategorie());
         p.setPhoto(produit.getPhoto());
         p.setPrix(produit.getPrix());
         return produitRepository.save(p);
