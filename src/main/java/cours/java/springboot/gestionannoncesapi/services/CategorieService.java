@@ -48,8 +48,14 @@ public class CategorieService {
         return categorieRepository.save(categorieEdit);
     }
     public void deleteCategorie(Long id){
-        Categorie categorie=getOneCategorie(id);
-        categorieRepository.delete(categorie);
+        try {
+            Categorie categorie=getOneCategorie(id);
+            categorieRepository.delete(categorie);
+        }catch (Exception e){
+            throw new categorieException(String
+                    .format("Impossible de supprimer cette categorie car elle est detenue par un produit"));
+        }
+
     }
 
 }
