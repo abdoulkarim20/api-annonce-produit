@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("produit/api/v1")
+@CrossOrigin(origins = "*")
 public class ProduitController {
     private ProduitService produitService;
     public ProduitController(ProduitService produitService){
         this.produitService=produitService;
     }
     /*recuperation de tous les produits*/
-    @GetMapping("/produits")
+    @GetMapping("/all")
     public List<Produit> getAll(){
         return produitService.getAllProduit();
     }
@@ -23,16 +25,16 @@ public class ProduitController {
         return produitService.getOne(id);
     }
     /*enregistrer un produit*/
-    @PostMapping("/produit/save")
+    @PostMapping("/save")
     public Produit save(@RequestBody Produit produit){
         produitService.saveProduit(produit);
         return produit;
     }
-    @DeleteMapping("/produit/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
         produitService.deleteProduit(id);
     }
-    @PutMapping("/produit/edit/{id}")
+    @PutMapping("/edit/{id}")
     public Produit edit(@PathVariable Long id,@RequestBody Produit produit){
        return produitService.editProduit(id,produit);
     }

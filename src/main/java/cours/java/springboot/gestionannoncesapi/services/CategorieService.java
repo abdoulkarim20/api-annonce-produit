@@ -37,15 +37,21 @@ public class CategorieService {
         }
     }
     public Categorie saveCategorie(Categorie categorie){
-        getCategorieByLibelle(categorie.getLibelle());
-        return categorieRepository.save(categorie);
+            getCategorieByLibelle(categorie.getLibelle());
+            return categorieRepository.save(categorie);
     }
 
     public Categorie editCategorie(Long id,Categorie categorie){
         Categorie categorieEdit=getOneCategorie(id);
         categorieEdit.setLibelle(categorie.getLibelle());
         categorieEdit.setDescrition(categorie.getDescrition());
-        return categorieRepository.save(categorieEdit);
+        try {
+            return categorieRepository.save(categorieEdit);
+        }catch (Exception e){
+            throw new categorieException(String
+                    .format(e.getMessage()));
+        }
+
     }
     public void deleteCategorie(Long id){
         try {
